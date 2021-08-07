@@ -79,8 +79,6 @@ mongo.connect().then(data => {
     app.listen(port)
 })
 
-loop()
-
 // database operations
 function sanitize(input) {
     if (typeof input !== "string") {
@@ -335,6 +333,8 @@ const voteToNumber = (text) => {
         return "" + parseFloat(number)
     }
 }
+
+loop()
 
 async function loop() {
     const maxGap = 12 * 60 * 60 * 1000
