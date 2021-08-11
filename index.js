@@ -338,8 +338,7 @@ loop()
 
 async function loop() {
     const maxGap = 12 * 60 * 60 * 1000
-    const midGap = 180 * 60 * 1000
-    const minGap = 3 * 60 * 1000
+    const minGap = 5 * 60 * 1000
     while (true) {
         // wait for some time, like three minutes or so, cuz we'll be opening 3 pages and reading one entries and writing two entries
         // get last index and last type
@@ -371,14 +370,11 @@ async function loop() {
         console.log("delay: " + cursor.time)
         if (cursor.time === undefined) {
             abort = true
-            await wait(midGap).catch(err => { abort = true; console.log(err) })
+            await wait(minGap).catch(err => { abort = true; console.log(err) })
         } else if (parseInt(cursor.time) > 0) {
             abort = true
             await wait(maxGap).catch(err => { abort = true; console.log(err) })
             await setCursor(cursor.type, cursor.line, "" + (parseInt(cursor.time) - 1)).catch(err => { abort = true; console.log(err) })
-        } else if (parseInt(cursor.time) < 0) {
-            await wait(midGap).catch(err => { abort = true; console.log(err) })
-            await setCursor(cursor.type, cursor.line, "0").catch(err => { abort = true; console.log(err) })
         }
         if (!abort) {
             //console.log(cursor)
@@ -410,7 +406,7 @@ async function loop() {
                 }
                 console.log("switched")
             } else if (abort) {
-                await setCursor(cursor.type, cursor.line, "-1").catch(err => { console.log(err) })
+                await setCursor(cursor.type, cursor.line, cursor.time).catch(err => { console.log(err) })
                 console.log("aborted")
             } else {
                 await setCursor(cursor.type, "" + (parseInt(cursor.line) + 1), cursor.time).catch(err => { console.log(err) })
