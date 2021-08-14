@@ -343,7 +343,7 @@ loop()
 
 async function loop() {
     const maxGap = 12 * 60 * 60 * 1000
-    const minGap = 5 * 60 * 1000
+    const minGap = 10 * 60 * 1000
     while (true) {
         // wait for some time, like three minutes or so, cuz we'll be opening 3 pages and reading one entries and writing two entries
         // get last index and last type
