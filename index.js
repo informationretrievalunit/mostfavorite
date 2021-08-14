@@ -84,7 +84,7 @@ function sanitize(input) {
     if (typeof input !== "string") {
         return ""
     } else {
-        const sanitized = input.replace(/[^a-zA-Z0-9_,]/, "")
+        const sanitized = input.replace(/[^a-zA-Z0-9_,-]/, "")
         return sanitized
     }
 }
