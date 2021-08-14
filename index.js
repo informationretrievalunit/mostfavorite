@@ -112,6 +112,11 @@ async function paramsToQuery(parameters) {
         // }
         query["$and"].push(toPush)
     })
+    if (!("type" in parameters)) {
+        const toPush = {}
+        toPush["type"] = { "$eq": "film" }
+        query["$and"].push(toPush)
+    }
     if ("search" in parameters && parameters["search"].length && parameters["search"][0] !== ",") {
         const toSearch = parameters["search"].split(",")
         toSearch.length = 10
