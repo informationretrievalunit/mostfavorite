@@ -1,4 +1,4 @@
-const uri = "mongodb+srv://gir:P8Qs1HajPRMHwCor@cluster0.dpx9c.mongodb.net/favorite?retryWrites=true&w=majority"
+const uri = process.env.MONGODB_URI
 const { MongoClient } = require("mongodb");
 const express = require("express")
 const helmet = require("helmet")
