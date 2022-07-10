@@ -222,9 +222,9 @@ const fetchID = (type, line) => {
                         return success(id)
                     } else {
                         let pid = "" + id
-                        while (pid.length < 19) {
-                            pid = "0" + pid
-                        }
+                        //while (pid.length < 19) {
+                        //    pid = "0" + pid
+                        //}
                         return success(pid)
                     }
                 }
