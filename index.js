@@ -339,7 +339,7 @@ const voteToNumber = (text) => {
     }
 }
 
-loop()
+//loop()
 
 async function loop() {
     const maxGap = 12 * 60 * 60 * 1000
